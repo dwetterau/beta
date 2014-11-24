@@ -2,6 +2,7 @@ express = require 'express'
 router = express.Router()
 passport_config  = require('../lib/auth')
 
+contact_controller = require '../lib/controllers/contact_controller'
 index_controller = require '../lib/controllers/index_controller'
 message_controller = require '../lib/controllers/message_controller'
 user_controller = require '../lib/controllers/user_controller'
@@ -25,5 +26,8 @@ router.get '/message/:id/sent', message_controller.get_message_sent
 router.get '/message/reply', passport_config.isAuthenticated, message_controller.get_create_message
 router.get '/message/create', message_controller.get_create_message
 router.post '/message/create', message_controller.post_create_message
+
+# Contacts routes
+router.get '/contacts/all', passport_config.isAuthenticated, contact_controller.get_all_contacts
 
 module.exports = router
