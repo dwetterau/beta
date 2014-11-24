@@ -12,7 +12,7 @@ exports.get_index = (req, res) ->
         if sender_link and !deleted
           link = '/message/' + id_tools.convertIdToString(message_info.MessageId) + '/sent'
         else if !deleted
-          link = '/message/' + id_tools.convertIdToString(message_info.MessageId) + '/view'
+          link = '/message/' + id_tools.convertIdToString(message_info.MessageId) + '/preview'
         else
           link = '#'
 

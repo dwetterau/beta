@@ -20,3 +20,8 @@ form.form-horizontal(action="/message/create", method='POST')
       button.btn.btn-success(type='submit')
         span.ion-person-add
         | Send
+block content
+  .well.
+    When you create a message, a link is generated to view it. When an authorized recipient views the link, the message
+    is rendered once and promptly deleted from the database. If you are logged in, you are allowed to specify the
+    username of a user that is the only authorized recipient of the message.

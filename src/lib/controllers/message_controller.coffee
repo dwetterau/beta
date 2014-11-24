@@ -1,6 +1,34 @@
 id_tools = require '../id_tools'
 models = require '../models'
 
+exports.get_preview_message = (req, res) ->
+  req.assert('id', 'Invalid message id.').len(3)
+  errors = req.validationErrors()
+  if errors
+    req.flash 'errors', errors
+    return res.redirect '/'
+
+  fail = (err) ->
+    if err?
+      console.log err
+    req.flash 'errors', {msg: 'You are not authorized to view this message.'}
+    return res.redirect '/'
+
+  id_string = req.params.id
+  models.MessageInfo.find({
+    where: {MessageId: id_tools.convertStringToId(id_string)}
+  }).success (message_info) ->
+    if not message_info or message_info.state == 'DELETED' or (req.user and
+        req.user.id != message_info.ReceiverId)
+      return fail()
+    res.render 'message_preview', {
+      link: '/message/' + id_string + "/view"
+      subject: message_info.subject
+      user: req.user
+      title: 'Read Message'
+    }
+  .failure fail
+
 exports.get_read_message = (req, res) ->
   req.assert('id', 'Invalid message id.').len(3)
   errors = req.validationErrors()
@@ -9,7 +37,8 @@ exports.get_read_message = (req, res) ->
     return res.redirect '/'
 
   fail = (err) ->
-    console.log err
+    if err?
+      console.log err
     req.flash 'errors', {msg: 'You are not authorized to view this message.'}
     return res.redirect '/'
 
@@ -95,7 +124,7 @@ exports.get_create_message = (req, res) ->
 exports.get_message_sent = (req, res) ->
   # TODO: do this ajax or something
   res.render 'message_sent', {
-    message_link: '/message/' + req.params.id + '/view'
+    message_link: '/message/' + req.params.id + '/preview'
     user: req.user
     title: "Message Sent"
   }
