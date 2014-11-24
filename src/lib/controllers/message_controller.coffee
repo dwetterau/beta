@@ -123,8 +123,11 @@ exports.get_create_message = (req, res) ->
 
 exports.get_message_sent = (req, res) ->
   # TODO: do this ajax or something
+  link = req.protocol + '://' + req.get('host')
+  link += '/message/' + req.params.id + '/preview'
+
   res.render 'message_sent', {
-    message_link: '/message/' + req.params.id + '/preview'
+    message_link: link
     user: req.user
     title: "Message Sent"
   }
