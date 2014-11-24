@@ -3,9 +3,12 @@ extends layout
 block content
   .page-header
     h3 Viewing new message
-  .panel.panel-default.container.fixed-panel
+  .panel.panel-default.container.fixed-panel.panel-body
     div
-      h3
+      h5
         = subject
-    .text-left.well.well-sm
+    .text-left.well.well
       = body
+    if has_creator
+      a(href=reply_link) Click here to reply
+

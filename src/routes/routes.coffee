@@ -22,6 +22,7 @@ router.post '/user/password', passport_config.isAuthenticated, user_controller.p
 router.get '/message/:id/view', message_controller.get_read_message
 router.get '/message/:id/preview', message_controller.get_preview_message
 router.get '/message/:id/sent', message_controller.get_message_sent
+router.get '/message/reply', passport_config.isAuthenticated, message_controller.get_create_message
 router.get '/message/create', message_controller.get_create_message
 router.post '/message/create', message_controller.post_create_message
 

@@ -55,13 +55,30 @@ exports.get_read_message = (req, res) ->
       message.MessageInfo.setMessage(null).success () ->
         message.MessageInfo.updateAttributes({state: 'DELETED'}).success () ->
           # TODO: Return the sender for easy reply.
-          req.flash 'info', {msg: 'This message has been deleted from the server.'}
-          res.render 'message', {
-            subject: message.MessageInfo.subject
-            body: message.body
-            user: req.user
-            title: 'Message'
-          }
+
+          render_message = (creator_username) ->
+            req.flash 'info', {msg: 'This message has been deleted from the server.'}
+
+            if creator_username?
+              has_creator = true
+              reply_link = '/message/reply?r=' + creator_username
+
+            res.render 'message', {
+              subject: message.MessageInfo.subject
+              body: message.body
+              user: req.user
+              title: 'Message'
+              has_creator
+              reply_link
+            }
+
+          if message.MessageInfo.CreatorId
+            models.User.find(message.MessageInfo.CreatorId).success (user) ->
+              render_message(user.username)
+            .failure fail
+          else
+            render_message()
+
         .failure fail
       .failure fail
     .failure fail
@@ -116,9 +133,13 @@ exports.post_create_message = (req, res) ->
     finish_building_message()
 
 exports.get_create_message = (req, res) ->
+  if req.query.r?
+    reply = req.query.r
+
   res.render 'create_message', {
-    title: 'Create Message',
+    title: 'Create Message'
     user: req.user
+    reply
   }
 
 exports.get_message_sent = (req, res) ->
