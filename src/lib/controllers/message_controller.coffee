@@ -19,7 +19,7 @@ exports.get_preview_message = (req, res) ->
     where: {MessageId: id_tools.convertStringToId(id_string)}
   }).success (message_info) ->
     if not message_info or message_info.state == 'DELETED' or (req.user and
-        req.user.id != message_info.ReceiverId)
+        message_info.ReceiverId and req.user.id != message_info.ReceiverId)
       return fail()
     res.render 'message_preview', {
       link: '/message/' + id_string + "/view"
