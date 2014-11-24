@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  if !user
+    include partials/create_message_form
+  else
+    include partials/message_status_list

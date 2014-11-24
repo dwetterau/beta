@@ -1,0 +1,22 @@
+.page-header
+  h3 Create message
+form.form-horizontal(action="/message/create", method='POST')
+  input(type='hidden', name='_csrf', value=_csrf)
+  .form-group
+    label.col-sm-3.control-label(for='subject') Subject
+    .col-sm-7
+      input.form-control(type='text', name='subject', id='subject', placeholder='')
+  .form-group
+    label.col-sm-3.control-label(for='body') Body
+    .col-sm-7
+      textarea.form-control(rows='5', name='body', id='body')
+  if user
+    .form-group
+      label.col-sm-3.control-label(for='receiver_id') Recipient
+      .col-sm-7
+        input.form-control(type='text', name='receiver_id', id='receiver_id', placeholder='Recipient username')
+  .form-group
+    .col-sm-offset-3.col-sm-7
+      button.btn.btn-success(type='submit')
+        span.ion-person-add
+        | Send
