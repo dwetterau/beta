@@ -2,8 +2,11 @@ bcrypt = require 'bcrypt'
 
 module.exports = (sequelize, DataTypes) ->
   User = sequelize.define "User",
-    username: DataTypes.STRING
-    password: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING
+      unique: true
+    }
+    password: DataTypes.STRING
     is_mod: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

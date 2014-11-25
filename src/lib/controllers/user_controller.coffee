@@ -29,6 +29,9 @@ exports.post_user_create = (req, res) ->
           if err?
             req.flash 'info', {msg: "Could not automatically log you in at this time."}
           res.redirect '/'
+      .failure () ->
+        req.flash 'errors', {msg: 'Username already in use!'}
+        res.redirect '/user/create'
 
 exports.get_user_login = (req, res) ->
   redirect = req.param('r')
