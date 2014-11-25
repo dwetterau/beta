@@ -34,3 +34,8 @@ footer {
     width: 50%;
     position: relative;
 }
+
+.message-subject {
+    position: absolute;
+    left: 25%;
+}

@@ -6,13 +6,12 @@
     if received_messages.length == 0
       div You have not received any messages.
     each message_info in received_messages
-      a.list-group-item(class=message_info.deleted?'disabled':'', href=message_info.link)
-        = message_info.subject
+      include message_row
+
 .col-sm-offset-3.col-sm-7
   h4 Sent Messages
   .list-group
     if sent_messages.length == 0
       div You have not sent any messages.
     each message_info in sent_messages
-      a.list-group-item(class=message_info.deleted?'disabled':'', href=message_info.link)
-        = message_info.subject
+      include message_row
