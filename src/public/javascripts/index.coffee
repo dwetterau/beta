@@ -22,3 +22,8 @@ if $("input#receiver_id").length
       }
     else
       console.error('Unable to retrieve contacts')
+
+$("button#delete").click () ->
+  # Get all of the selected messages
+  $(":checkbox:checked").each (element) ->
+    console.log $(element).data('id')

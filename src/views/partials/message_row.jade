@@ -1,4 +1,6 @@
 a.list-group-item(class=message_info.deleted?'disabled':'', href=message_info.link)
+  span.message-checkbox
+    input.message-checkbox(data-id=message_info.id, type="checkbox", value="")
   span
     = message_info.user
   span.message-subject

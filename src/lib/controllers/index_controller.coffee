@@ -9,10 +9,11 @@ exports.get_index = (req, res) ->
       message_infos = []
       for message_info in infos
         deleted = if message_info.state == 'DELETED' then true else false
+        id = id_tools.convertIdToString(message_info.MessageId)
         if sender_link and !deleted
-          link = '/message/' + id_tools.convertIdToString(message_info.MessageId) + '/sent'
+          link = '/message/' + id + '/sent'
         else if !deleted
-          link = '/message/' + id_tools.convertIdToString(message_info.MessageId) + '/preview'
+          link = '/message/' + id + '/preview'
         else
           link = '#'
         if sender_link
@@ -32,6 +33,7 @@ exports.get_index = (req, res) ->
           link
           deleted
           user
+          id
         }
       return message_infos.reverse()
 

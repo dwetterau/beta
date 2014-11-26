@@ -37,5 +37,19 @@ footer {
 
 .message-subject {
     position: absolute;
-    left: 25%;
+    left: 30%;
+}
+
+.message-name {
+    position: absolute;
+    left: 5%;
+}
+
+span.message-checkbox {
+    display: inline;
+    margin-right: .5em;
+}
+
+input[type="checkbox"].message-checkbox {
+    margin-top: 6px;
 }
