@@ -35,14 +35,23 @@ footer {
     position: relative;
 }
 
+.message {
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .message-subject {
     position: absolute;
     left: 30%;
+    max-width: 67.5%;
 }
 
 .message-name {
     position: absolute;
-    left: 5%;
+    left: 7.5%;
+    max-width: 22.5%;
 }
 
 span.message-checkbox {

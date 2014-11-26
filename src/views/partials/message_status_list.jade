@@ -1,8 +1,8 @@
 .page-header
   h3 Your messages
-.col-sm-offset-3.col-sm-7.btn-group
+.col-sm-offset-2.col-sm-8.btn-group
   button.btn.btn-danger(type="button", id="delete") Delete
-.col-sm-offset-3.col-sm-7
+.col-sm-offset-2.col-sm-8
   h4 Received Messages
   .list-group
     if received_messages.length == 0
@@ -10,7 +10,7 @@
     each message_info in received_messages
       include message_row
 
-.col-sm-offset-3.col-sm-7
+.col-sm-offset-2.col-sm-8
   h4 Sent Messages
   .list-group
     if sent_messages.length == 0

@@ -24,6 +24,16 @@ if $("input#receiver_id").length
       console.error('Unable to retrieve contacts')
 
 $("button#delete").click () ->
+  ids = []
   # Get all of the selected messages
-  $(":checkbox:checked").each (element) ->
-    console.log $(element).data('id')
+  for element in $(":checkbox:checked")
+    ids.push $(element).data('id')
+  # Construct a form, add all of the ids as array inputs, and send it
+  form = $("<form>").attr({method: 'POST', action: '/message/delete'})
+    .css {display: 'none'}
+  for id in ids
+    form.append $('<input>').attr
+      type: 'hidden'
+      name: 'ids[]'
+      value: id
+  form.appendTo('body').submit()

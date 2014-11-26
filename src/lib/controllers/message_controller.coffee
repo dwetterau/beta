@@ -152,3 +152,20 @@ exports.get_message_sent = (req, res) ->
     user: req.user
     title: "Message Sent"
   }
+
+exports.post_delete_message = (req, res) ->
+  ids = req.body.ids
+  if not ids?
+    ids = []
+  message_info_ids = (id_tools.convertStringToId(id) for id in ids)
+  models.MessageInfo.destroy({where: {id: message_info_ids}}).success () ->
+    if message_info_ids.length == 1
+      msg = "Message deleted."
+    else
+      msg = ids.length + " messages deleted."
+    req.flash "success", {msg}
+    res.redirect '/'
+  .failure (err) ->
+    console.log err
+    req.flash "errors", {msg: "Failed to delete messages."}
+    res.redirect '/'
