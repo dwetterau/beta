@@ -50,7 +50,7 @@ exports.get_index = (req, res) ->
           id_map[message_info.CreatorId] = true
         for message_info in created_message_infos
           id_map[message_info.ReceiverId] = true
-        ids_to_request = (k for k, v of id_map)
+        ids_to_request = (k for k, v of id_map when k != 'null')
         models.User.findAll({where: {id: ids_to_request}}).success (users) ->
           for user in users
             id_map[user.id] = user.username
