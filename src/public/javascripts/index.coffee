@@ -1,4 +1,5 @@
-# Client-side stuff here
+utils = require ('./lib/utils.coffee')
+
 $(".alert").delay(3000).fadeOut(2000)
 
 if $("input#receiver_id").length
@@ -29,6 +30,11 @@ $("button.message-action").click () ->
   # Get all of the selected messages
   for element in $(":checkbox:checked")
     ids.push $(element).data('id')
+
+  if ids.length == 0
+    utils.flash('info', 'No messages selected.')
+    return
+
   # Construct a form, add all of the ids as array inputs, and send it
   form = $("<form>").attr({method: 'POST', action: url})
     .css {display: 'none'}
