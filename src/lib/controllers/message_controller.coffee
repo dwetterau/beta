@@ -153,19 +153,19 @@ exports.get_message_sent = (req, res) ->
     title: "Message Sent"
   }
 
-exports.post_delete_message = (req, res) ->
+exports.post_archive_message = (req, res) ->
   ids = req.body.ids
   if not ids?
     ids = []
   message_info_ids = (id_tools.convertStringToId(id) for id in ids)
   models.MessageInfo.destroy({where: {id: message_info_ids}}).success () ->
     if message_info_ids.length == 1
-      msg = "Message deleted."
+      msg = "Message archived."
     else
-      msg = ids.length + " messages deleted."
+      msg = ids.length + " messages archived."
     req.flash "success", {msg}
     res.redirect '/'
   .failure (err) ->
     console.log err
-    req.flash "errors", {msg: "Failed to delete messages."}
+    req.flash "errors", {msg: "Failed to archive messages."}
     res.redirect '/'
