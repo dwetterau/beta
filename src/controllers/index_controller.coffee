@@ -1,5 +1,5 @@
-constants = require '../common/constants'
-id_tools = require '../id_tools'
+constants = require '../lib/common/constants'
+id_tools = require '../lib/id_tools'
 models = require '../models'
 
 exports.get_index = (req, res) ->

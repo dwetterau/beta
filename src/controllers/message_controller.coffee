@@ -1,4 +1,4 @@
-id_tools = require '../id_tools'
+id_tools = require '../lib/id_tools'
 models = require '../models'
 
 exports.get_preview_message = (req, res) ->

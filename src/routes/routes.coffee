@@ -2,11 +2,11 @@ express = require 'express'
 router = express.Router()
 passport_config  = require('../lib/auth')
 
-api_controller = require '../lib/controllers/api_controller'
-contact_controller = require '../lib/controllers/contact_controller'
-index_controller = require '../lib/controllers/index_controller'
-message_controller = require '../lib/controllers/message_controller'
-user_controller = require '../lib/controllers/user_controller'
+api_controller = require '../controllers/api_controller'
+contact_controller = require '../controllers/contact_controller'
+index_controller = require '../controllers/index_controller'
+message_controller = require '../controllers/message_controller'
+user_controller = require '../controllers/user_controller'
 
 # GET home page
 router.get '/', index_controller.get_index
