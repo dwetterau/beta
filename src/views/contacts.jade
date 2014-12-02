@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .page-header
+    h3 Your contacts
+  .col-sm-offset-2.col-sm-8
+    .list-group
+      if contacts.length == 0
+        div You do not have any contacts.
+      each contact in contacts
+        include partials/contact_row

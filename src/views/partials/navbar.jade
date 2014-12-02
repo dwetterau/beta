@@ -10,6 +10,9 @@
           a(href='/') Home
         li(class=title=='Create Message'?'active':undefined)
           a(href='/message/create') New Message
+        if user
+          li(class=title=='Contacts'?'active':undefined)
+            a(href='/contacts') Contacts
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=title=='Login'?'active':undefined)
