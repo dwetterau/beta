@@ -1,13 +1,11 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/ripples.min.css')
+    link(rel='stylesheet', href='/stylesheets/material-wfont.min.css')
     link(rel='stylesheet', href='/stylesheets/typeaheadjs.css')
-    script(src='http://code.jquery.com/jquery-2.1.1.min.js')
-    script(src='/javascripts/external/bootstrap.min.js')
-    script(src='/javascripts/external/typeahead.bundle.min.js')
-    script(src='/javascripts/bundle.js' defer)
+    link(rel='stylesheet', href='/stylesheets/style.css')
     title #{title} | Beta
 
     meta(property="og:title" content=title)
@@ -23,3 +21,10 @@ html
     include partials/footer
 
     include partials/analytics
+
+    script(src='http://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/javascripts/external/bootstrap.min.js')
+    script(src='/javascripts/external/ripples.min.js' )
+    script(src='/javascripts/external/material.min.js' )
+    script(src='/javascripts/external/typeahead.bundle.min.js')
+    script(src='/javascripts/bundle.js' defer)
