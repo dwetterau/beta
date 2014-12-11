@@ -1,19 +1,17 @@
 .page-header
-  h3 Your messages
+  h1 Your messages
 p.bs-component.col-sm-offset-2.col-sm-8
   button.btn.btn-warning.message-action(type="button", data-url="/message/archive") Archive
-.bs-component.col-sm-offset-2.col-sm-8
-  h4 Received Messages
-  .list-group
-    if received_messages.length == 0
-      div You have not received any messages.
-    each message_info in received_messages
-      include message_row
+.col-sm-offset-2.col-sm-8
+  legend Received Messages
+  if received_messages.length == 0
+    .well.well-sm You have not received any messages.
+  each message_info in received_messages
+    include message_row
 
-.bs-component.col-sm-offset-2.col-sm-8
-  h4 Sent Messages
-  .list-group
-    if sent_messages.length == 0
-      div You have not sent any messages.
-    each message_info in sent_messages
-      include message_row
+.col-sm-offset-2.col-sm-8
+  legend Sent Messages
+  if sent_messages.length == 0
+    .well.well-sm You have not sent any messages.
+  each message_info in sent_messages
+    include message_row

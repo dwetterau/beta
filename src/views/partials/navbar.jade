@@ -4,7 +4,7 @@
       a.navbar-brand(href='/')
         span
         | Beta
-    .collapse.navbar-collapse
+    .navbar-collapse.collapse.navbar-responsive-collapse
       ul.nav.navbar-nav
         li(class=title=='Home'?'active':undefined)
           a(href='/') Home
@@ -20,7 +20,7 @@
           li(class=title=='Create Account'?'active':undefined)
             a(href='/user/create') Create Account
         else
-          li.dropdown(class=title=='Account Management'?'active':undefined)
+          li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               | #{user.username}&nbsp;
               i.caret

@@ -1,5 +1,6 @@
 utils = require ('./lib/utils.coffee')
 
+$.material.init()
 $(".alert").delay(3000).fadeOut(2000)
 
 if $("input#receiver_id").length
@@ -23,6 +24,9 @@ if $("input#receiver_id").length
       }
     else
       console.error('Unable to retrieve contacts')
+
+$(".clickable").click () ->
+  window.location = $(this).data('href')
 
 $("button.message-action").click () ->
   url = $(this).data('url')

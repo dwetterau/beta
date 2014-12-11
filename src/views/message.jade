@@ -2,13 +2,15 @@ extends layout
 
 block content
   .page-header
-    h3 Viewing new message
-  .panel.panel-default.container.fixed-panel.panel-body
+    h1 Viewing new message
+  .well
     div
-      h5
+      h2
         = subject
-    .text-left.well.well
+    .text-left
       = body
-    if has_creator
+
+  if has_creator
+    .well.well-sm
       a(href=reply_link) Click here to reply
 

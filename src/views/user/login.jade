@@ -3,7 +3,7 @@ extends ../layout
 block content
 
   .page-header
-    h3 Sign in
+    h1 Sign in
   .well.bs-component
     form.form-horizontal(action="/user/login", method='POST')
       input(type='hidden', name='_csrf', value=_csrf)

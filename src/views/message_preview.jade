@@ -2,12 +2,12 @@ extends layout
 
 block content
   .page-header
-    h3 About to view new message
-  .panel.panel-default.container.fixed-panel
-    h3
-      = subject
-    .panel-body
-      .well.well-sm
-        a(href=link) Reveal message
-      i.
-        Once you click on the link above, the message body can never be read again.
+    h1 About to view new message
+  .well
+    div
+      h2
+        = subject
+    div
+      .btn.btn-primary.btn-flat.clickable(data-href=link) Reveal message
+  .well.well-sm.
+    Once you click on the link above, the message body can never be read again.

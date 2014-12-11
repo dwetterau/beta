@@ -3,7 +3,7 @@ extends ../layout
 block content
 
   .page-header
-    h3 Create an account
+    h1 Create an account
   .well.bs-component
     form.form-horizontal(action="/user/create" id='signup-form', method='POST')
       input(type='hidden', name='_csrf', value=_csrf)
