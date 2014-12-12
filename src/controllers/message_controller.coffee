@@ -155,16 +155,22 @@ exports.get_message_sent = (req, res) ->
 
 exports.post_archive_message = (req, res) ->
   ids = req.body.ids
+  user_id = req.user.id
   if not ids?
     ids = []
   message_info_ids = (id_tools.convertStringToId(id) for id in ids)
-  models.MessageInfo.destroy({where: {id: message_info_ids}}).success () ->
-    if message_info_ids.length == 1
-      msg = "Message archived."
-    else
-      msg = ids.length + " messages archived."
-    req.flash "success", {msg}
-    res.redirect '/'
+  models.MessageInfo.update(
+    {CreatorId: null}, {where: {id: message_info_ids, CreatorId: user_id}}
+  ).success () ->
+    return models.MessageInfo.update(
+      {ReceiverId: null}, {where: {id: message_info_ids, ReceiverId: user_id}}
+    ).success () ->
+      if message_info_ids.length == 1
+        msg = "Message archived."
+      else
+        msg = ids.length + " messages archived."
+      req.flash "success", {msg}
+      res.redirect '/'
   .failure (err) ->
     console.log err
     req.flash "errors", {msg: "Failed to archive messages."}
