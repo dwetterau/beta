@@ -28,6 +28,9 @@ if $("input#receiver_id").length
 $(".clickable").click () ->
   window.location = $(this).data('href')
 
+$(".clickable input").click (e) ->
+  e.stopPropagation()
+
 $("button.message-action").click () ->
   url = $(this).data('url')
   ids = []
