@@ -1,6 +1,10 @@
 server {
         listen	80;
+        listen 443 ssl;
         server_name beta.dwett.com;
+
+        ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
         root /dev/null;
         location / {
@@ -12,3 +16,4 @@ server {
                 proxy_cache_bypass $http_upgrade;
         }
 }
+
