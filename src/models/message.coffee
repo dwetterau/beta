@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) ->
   Message = sequelize.define "Message",
-    body: DataTypes.STRING
+    body: DataTypes.STRING(65536)
   , classMethods:
     associate: (models) ->
       Message.belongsTo(models.User)
