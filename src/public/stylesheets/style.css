@@ -61,14 +61,19 @@ footer {
 
 .message-subject {
     position: absolute;
-    left: 30%;
-    max-width: 67.5%;
+    left: 45px;
+    margin-left: 25%;
+    max-width: calc(67.5% - 45px);
 }
 
 .message-name {
     position: absolute;
-    left: 7.5%;
+    left: 45px;
     max-width: 22.5%;
+}
+
+.message-view {
+    overflow-wrap: break-word;
 }
 
 span.message-checkbox {
