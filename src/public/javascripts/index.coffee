@@ -1,7 +1,6 @@
 utils = require ('./lib/utils.coffee')
 
 $.material.init()
-$(".alert").delay(3000).fadeOut(2000)
 
 if $("input#receiver_id").length
   # Populate the contact list and enable the typeahead

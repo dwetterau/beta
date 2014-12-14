@@ -7,7 +7,7 @@ exports.get_flash = (req, res) ->
 
   messages = {}
   messages[level] = [{msg}]
-  directory = path.join(__dirname, '../../views/partials/flash.jade')
+  directory = path.join(__dirname, '../views/partials/flash.jade')
   jade.renderFile directory, {messages}, (err, html) ->
     if err
       console.log err

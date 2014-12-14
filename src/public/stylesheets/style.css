@@ -28,6 +28,7 @@ footer {
     margin-left: 25%;
     width: 50%;
     position: relative;
+    opacity: .75;
 }
 
 .message-well:hover {
