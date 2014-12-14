@@ -7,8 +7,7 @@ block content
     div
       h2
         = subject
-    .text-left
-      = body
+    div !{body}
 
   if has_creator
     .well.well-sm

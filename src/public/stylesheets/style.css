@@ -79,3 +79,12 @@ span.message-checkbox {
 input[type="checkbox"].message-checkbox {
     margin-top: 6px;
 }
+
+.editor {
+    border-bottom: 1px solid #7e7e7e;
+}
+
+#toolbar {
+    padding: 7px 0 0 0;
+    margin-bottom: 0;
+}

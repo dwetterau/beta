@@ -51,3 +51,15 @@ $("button.message-action").click () ->
       name: 'ids[]'
       value: id
   form.appendTo('body').submit()
+
+if $('#create_message').length
+  # Create the Quill editor
+  editor = new Quill '#editor', {
+    modules:
+      'toolbar': {container: '#toolbar'}
+      'link-tooltip': true
+    theme: 'snow'
+  }
+
+  $('#create_message').submit () ->
+    $('#body').val editor.getHTML()
