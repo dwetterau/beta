@@ -93,3 +93,7 @@ input[type="checkbox"].message-checkbox {
     padding: 7px 0 0 0;
     margin-bottom: 0;
 }
+
+.float-right {
+    float: right;
+}

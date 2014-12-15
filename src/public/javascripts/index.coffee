@@ -51,6 +51,23 @@ $("button.message-action").click () ->
       value: id
   form.appendTo('body').submit()
 
+$("button.message-redirect").click () ->
+  window.location = $(this).data('url')
+
+$("button.message-select").click () ->
+  if $(this).data('state') == 'unchecked'
+    to_set = true
+    new_state = 'checked'
+    new_text = 'Deselect All'
+  else
+    to_set = false
+    new_state = 'unchecked'
+    new_text = 'Select All'
+  $(this).text(new_text)
+  $(this).data('state', new_state)
+  for element in $(":checkbox")
+    $(element).prop('checked', to_set)
+
 if $('#create_message').length
   # Create the Quill editor
   editor = new Quill '#editor', {

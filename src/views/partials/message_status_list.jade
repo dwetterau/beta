@@ -2,6 +2,9 @@
   h1 Your messages
 p.bs-component.col-sm-offset-2.col-sm-8
   button.btn.btn-warning.message-action(type="button", data-url="/message/archive") Archive
+  span !{" "}
+  button.btn.btn-info.message-select(type="button", data-state="unchecked") Select All
+  button.btn.btn-success.message-redirect.float-right(type="button", data-url="/message/create") New Message
 .col-sm-offset-2.col-sm-8
   legend Received Messages
   if received_messages.length == 0
