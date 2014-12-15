@@ -3,14 +3,14 @@ div.alert-container
     .alert.alert-danger.alert-dismissable
       button.close(type='button', data-dismiss='alert') &times;
       for error in messages.errors
-        .text-center= error.msg
+        .text-center !{error.msg}
   if messages.info
     .alert.alert-info.alert-dismissable
       button.close(type='button', data-dismiss='alert') &times;
       for info in messages.info
-        .text-center= info.msg
+        .text-center !{info.msg}
   if messages.success
     .alert.alert-success.alert-dismissable
       button.close(type='button', data-dismiss='alert') &times;
       for success in messages.success
-        .text-center= success.msg
+        .text-center !{success.msg}

@@ -1,5 +1,6 @@
 id_tools = require '../lib/id_tools'
 models = require '../models'
+notifications = require './notification_controller'
 
 exports.get_preview_message = (req, res) ->
   req.assert('id', 'Invalid message id.').len(3)
@@ -95,7 +96,8 @@ exports.post_create_message = (req, res) ->
   fail = (msg) ->
     if msg?
       req.flash 'errors', {msg}
-    req.flash 'errors', {msg: 'Failed to create message.'}
+    else
+      req.flash 'errors', {msg: 'Failed to create message.'}
     return res.redirect '/message/create'
 
   if req.user
@@ -118,6 +120,9 @@ exports.post_create_message = (req, res) ->
       message.save().success () ->
         message_info.MessageId = message.id
         message_info.save().success () ->
+          # Send a notification to the recipient
+          notifications.new_message other_user_id, id_tools.convertIdToString(message.id)
+
           req.flash 'success', {msg: 'Message sent!'}
           res.redirect '/message/' + id_tools.convertIdToString(message.id) + '/sent'
         .failure fail

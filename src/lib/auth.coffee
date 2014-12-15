@@ -25,4 +25,7 @@ passport.use new LocalStrategy {usernameField: 'username'}, (username, password,
 exports.isAuthenticated = (req, res, next) ->
   if req.isAuthenticated()
     return next()
-  res.redirect '/user/login?r=' + encodeURIComponent(req.url)
+  if req.url.indexOf('/api/') == -1
+    res.redirect '/user/login?r=' + encodeURIComponent(req.url)
+  else
+    res.send {status: 'error', error: 'Not logged in'}

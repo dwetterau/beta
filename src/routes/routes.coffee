@@ -7,6 +7,7 @@ contact_controller = require '../controllers/contact_controller'
 index_controller = require '../controllers/index_controller'
 message_controller = require '../controllers/message_controller'
 user_controller = require '../controllers/user_controller'
+notification_controller = require '../controllers/notification_controller'
 
 # GET home page
 router.get '/', index_controller.get_index
@@ -36,5 +37,10 @@ router.get '/contacts', passport_config.isAuthenticated, contact_controller.get_
 
 # API routes
 router.get '/api/flash', api_controller.get_flash
+router.get '/api/notifications', passport_config.isAuthenticated,
+  notification_controller.get_notifications
+
+# start the notification controller loop
+notification_controller.start_listen_loop()
 
 module.exports = router

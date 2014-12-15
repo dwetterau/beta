@@ -8,5 +8,6 @@ Constants = {
     X: 47, y: 48, Y: 49, z: 50, Z: 51, 0: 52, 1: 53, 2: 54, 3: 55, 4: 56, 5: 57, 6: 58,
     7: 59, 8: 60, 9: 61
   }
+  NOTIFICATION_LOOP_TIMEOUT: 10 * 1000
 }
 module.exports = Constants

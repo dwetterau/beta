@@ -62,3 +62,18 @@ if $('#create_message').length
 
   $('#create_message').submit () ->
     $('#body').val editor.getHTML()
+
+# Set up the notification listening
+request_notifications = () ->
+  $.get '/api/notifications', (response) ->
+    # When we get a response... if it has a "message", render it in a flash
+    if response.message?
+      utils.add_notification response.message
+    # Make the recursive call for longpolling
+    if response.status == 'ok'
+      request_notifications()
+  .fail () ->
+    setTimeout () ->
+      request_notifications()
+    , 5000
+request_notifications()
