@@ -5,9 +5,14 @@ models = require '../models'
 exports.get_index = (req, res) ->
   if req.user
     # Get all of the user's received messages
-    process_messages = (infos, sender_link, user_map) ->
+    process_messages = (infos, sender_link, user_map, user_id) ->
       message_infos = []
       for message_info in infos
+        # Omit the archived messages
+        if message_info.creatorArchived and user_id == message_info.CreatorId or
+            message_info.receiverArchived and user_id == message_info.ReceiverId
+          continue
+
         deleted = if message_info.state == 'DELETED' then true else false
         id = id_tools.convertIdToString(message_info.MessageId)
         info_id = id_tools.convertIdToString(message_info.id)
@@ -55,8 +60,8 @@ exports.get_index = (req, res) ->
           for user in users
             id_map[user.id] = user.username
 
-          received_messages = process_messages(received_message_infos, false, id_map)
-          sent_messages = process_messages(created_message_infos, true, id_map)
+          received_messages = process_messages(received_message_infos, false, id_map, req.user.id)
+          sent_messages = process_messages(created_message_infos, true, id_map, req.user.id)
           res.render 'index', {
             user: req.user
             title: 'Home'

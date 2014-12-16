@@ -165,10 +165,10 @@ exports.post_archive_message = (req, res) ->
     ids = []
   message_info_ids = (id_tools.convertStringToId(id) for id in ids)
   models.MessageInfo.update(
-    {CreatorId: null}, {where: {id: message_info_ids, CreatorId: user_id}}
+    {creatorArchived: true}, {where: {id: message_info_ids, CreatorId: user_id}}
   ).success () ->
     return models.MessageInfo.update(
-      {ReceiverId: null}, {where: {id: message_info_ids, ReceiverId: user_id}}
+      {receiverArchived: true}, {where: {id: message_info_ids, ReceiverId: user_id}}
     ).success () ->
       if message_info_ids.length == 1
         msg = "Message archived."
