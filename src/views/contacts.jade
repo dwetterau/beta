@@ -4,6 +4,10 @@ block content
   .page-header
     h1 Your contacts
   .col-sm-offset-2.col-sm-8
+    .well.form-group
+      input.form-control(type='text', id='contact_search',
+        placeholder='Search for contacts...' autocomplete="true")
+  .col-sm-offset-2.col-sm-8
     .well.list-group
       if contacts.length == 0
         div You do not have any contacts.

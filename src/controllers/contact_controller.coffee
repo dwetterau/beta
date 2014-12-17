@@ -51,3 +51,13 @@ exports.get_all_contacts = (req, res) ->
       user_list
     }
   retrieve_contacts req.user, fail, success
+
+exports.get_all_users = (req, res) ->
+  fail = (err) ->
+    res.send {status: 'failure', msg: 'Could not retrieve users.'}
+  models.User.findAll().success (users) ->
+    user_list = []
+    for user in users
+      user_list.push {username: user.username}
+    res.send {status: 'ok', user_list}
+  .failure fail
