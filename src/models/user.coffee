@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) ->
       User.hasMany(models.MessageInfo, {as: 'Received', foreignKey: 'ReceiverId'})
       User.hasMany(models.MessageInfo, {as: 'Created', foreignKey: 'CreatorId'})
       User.hasMany(models.Message)
+      User.hasMany(models.Contact)
   , instanceMethods:
 
     hash_and_set_password: (unhashed_password, next) ->

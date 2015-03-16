@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) ->
     user_id: DataTypes.INTEGER
   , classMethods:
     associate: (models) ->
-      User.belongsTo(models.User)
-  , instanceMethods:
+      Contact.belongsTo(models.User)
   return Contact
 
