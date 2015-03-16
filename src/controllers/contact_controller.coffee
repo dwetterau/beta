@@ -61,3 +61,19 @@ exports.get_all_users = (req, res) ->
       user_list.push {username: user.username}
     res.send {status: 'ok', user_list}
   .failure fail
+
+exports.post_create_contact = (req, res) ->
+  fail = (err) ->
+    res.send {status: 'failure', msg: 'Could not add contact.'}
+  target_username = req.param 'username'
+  model.User.find({where: {username: target_username}}).then (user) ->
+    if not user?
+      return fail()
+    return models.Contact.build({
+      user_id: req.param('user_id')
+      UserId: req.user.id
+    }).save()
+  .then () ->
+    return res.send {status: 'ok', target_username}
+  .catch fail
+

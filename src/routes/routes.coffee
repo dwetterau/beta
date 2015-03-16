@@ -34,6 +34,7 @@ router.post '/message/archive', passport_config.isAuthenticated,
 # Contacts routes
 router.get '/contacts/mine', passport_config.isAuthenticated, contact_controller.get_all_contacts
 router.get '/contacts/all', passport_config.isAuthenticated, contact_controller.get_all_users
+router.post '/contacts/create', passport_config.isAuthenticated, contact_controller.post_create_contact
 router.get '/contacts', passport_config.isAuthenticated, contact_controller.get_contacts
 
 # API routes
