@@ -3,13 +3,15 @@ extends layout
 block content
   .page-header
     h1 Your contacts
-  .col-sm-offset-2.col-sm-8
-    .well.form-group
-      input.form-control(type='text', id='contact_search',
+  form.col-sm-offset-2.col-sm-8(action="/contacts/create", method="POST")
+    .well
+      .form-group
+      input.form-control(type='text', name='username', id='contact_search',
         placeholder='Search for contacts...' autocomplete="true")
+      .form-group
+        button.btn.btn-success(type='submit') Add Contact
   .col-sm-offset-2.col-sm-8
-    .well.list-group
-      if contacts.length == 0
-        div You do not have any contacts.
-      each contact in contacts
-        include partials/contact_row
+    if contacts.length == 0
+      div You do not have any contacts.
+    each contact in contacts
+      include partials/contact_row
