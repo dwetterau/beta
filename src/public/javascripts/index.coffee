@@ -84,10 +84,15 @@ $("button.message-select").click () ->
     to_set = false
     new_state = 'unchecked'
     new_text = 'Select All'
-  $(this).text(new_text)
-  $(this).data('state', new_state)
+  count = 0
   for element in $(":checkbox")
+    count++
     $(element).prop('checked', to_set)
+
+  # Only update the state if there was a message
+  if count != 0
+    $(this).text(new_text)
+    $(this).data('state', new_state)
 
 if $('#create_message').length
   # Create the Quill editor
