@@ -93,6 +93,9 @@ $("button.message-select").click () ->
   if count != 0
     $(this).text(new_text)
     $(this).data('state', new_state)
+  else
+    # Display an error that there are no messages to select
+    utils.flash 'info', 'No messages to select.'
 
 if $('#create_message').length
   # Create the Quill editor
